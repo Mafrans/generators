@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Motion Direction Generator</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/Motion-Direction.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-4">Minecraft Motion-Direction</h1>
+			<p class="lead">This is a simple app for generating command blocks sending an entity in a direction.</p>
+		</div>
+
+		<div class="form-group">
+			<label for="input-template">Command Template</label>
+			<input id="input-template" class="form-control" type="text" placeholder="Command Template" value="execute at @a[x_rotation=%rot_x_min%..%rot_x_max%,y_rotation=%rot_y_min%..%rot_y_max%] run summon arrow ~ ~ ~ {Motion:[%motion_x%,%motion_y%,%motion_z%]}">
+			<small class="form-text text-muted">
+				%rot_x_min%: The minimum player X rotation.<br/>
+				%rot_x_max%: The maximum player X rotation.<br/>
+				%rot_y_max%: The minimum player Y rotation.<br/>
+				%rot_y_max%: The maximum player Y rotation.<br/>
+				%motion_x%: The vector X value.<br/>
+				%motion_y%: The vector Y value.<br/>
+				%motion_z%: The vector Z value.<br/>
+			</small>
+		</div>
+		<div class="form-group">
+			<label for="input-precision-x">X precision</label>
+			<div class="input-group">
+				<input id="input-precision-x" class="form-control" type="text" placeholder="1" value="10">
+				<div class="input-group-append">
+					<div class="input-group-text">Degrees</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="input-precision-y">Y precision</label>
+			<div class="input-group">
+				<input id="input-precision-y" class="form-control" type="text" placeholder="1" value="10">
+				<div class="input-group-append">
+					<div class="input-group-text">Degrees</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="input-magnitude">Magnitude</label>
+			<input id="input-magnitude" class="form-control" type="text" placeholder="1" value="1">
+		</div>
+
+		<button type="submit" class="btn btn-primary" onclick="generateCommands()">Generate <span id="command-count"></span></button>
+
+		<div class="collapse" id="commandContainer">
+			<hr/>
+			<div class="form-group">
+				<label for="commands">Command Output</label>
+				<textarea class="form-control" id="commands"></textarea>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
